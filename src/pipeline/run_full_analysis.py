@@ -18,7 +18,11 @@ from config.settings import (
 )
 from modules.emotion_analysis_module import analyze_emotions, draw_emotions
 from modules.face_recognition_module import detect_faces, draw_face_boxes
-from modules.activity_detection_module import ActivityDetector, draw_activity
+from modules.activity_detection_module import (
+    create_activity_state,
+    detect_activity,
+    draw_activity,
+)
 from pipeline.run_face_recognition import scale_boxes
 
 
@@ -69,7 +73,7 @@ def run_pipeline(
 
     frame_index = 0
     processed_frames = 0
-    activity_detector = ActivityDetector()
+    activity_state = create_activity_state()
     emotion_counts = Counter()
     activity_counts = Counter()
     faces_detected = 0
@@ -111,7 +115,7 @@ def run_pipeline(
             emotions = analyze_emotions(frame, face_boxes, face_padding=face_padding)
             emotion_counts.update(emotions)
             faces_detected += len(emotions)
-            activity, motion_score = activity_detector.detect(frame_for_detection)
+            activity, motion_score = detect_activity(frame_for_detection, activity_state)
             activity_counts.update([activity])
             is_anomaly = False
             if motion_score:

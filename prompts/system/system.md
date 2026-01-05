@@ -29,6 +29,7 @@ Padroes de implementacao
 - Separar pipeline em etapas claras
 - Evitar logica de negocio diretamente na View
 - Manter scripts de execucao simples e objetivos
+- Usar apenas paradigma funcional (sem orientacao a objetos)
 
 Boas praticas de codigo
 - Seguir Clean Code e SOLID
