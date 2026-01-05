@@ -1,0 +1,9 @@
+opencv-python
+face_recognition
+dlib
+deepface
+mediapipe
+moviepy
+SpeechRecognition
+tqdm
+tf-keras
